@@ -2,10 +2,11 @@ package org.benigaslo.controller;
 
 public class AgendaDTO {
     public String nombre;
-    public String ciudad;
+    public String descrpcion;
 
     public AgendaDTO(String nombre, String ciudad) {
         this.nombre = nombre;
-        this.ciudad = ciudad;
+        this.descrpcion = ciudad;
     }
+
 }

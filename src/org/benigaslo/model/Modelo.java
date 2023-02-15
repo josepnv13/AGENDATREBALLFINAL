@@ -8,11 +8,11 @@ import java.util.List;
 
 public class Modelo {
 
-    List<Agenda> agendas = new ArrayList<>();
+    public List<Agenda> agendas = new ArrayList<>();
 
 
     public void guardarAgenda(AgendaDTO datos){
-        agendas.add(new Agenda(datos.nombre, datos.ciudad));
+        agendas.add(new Agenda(datos.nombre, datos.descrpcion));
     }
 
 
@@ -20,8 +20,14 @@ public class Modelo {
         return agendas;
     }
 
-    public void eliminarContacto(String nom){
+    public void eliminarContacto(int numeroAgenda , String nomContactoAEliminar){
 
+
+        agendas.get(numeroAgenda).contactos.removeIf(contacto -> contacto.nombre.equals(nomContactoAEliminar));
+
+
+    }
+    public void eliminarAgenda(String nom){
         agendas.removeIf(agenda -> agenda.nombre.equals(nom));
 
     }
@@ -46,4 +52,42 @@ public class Modelo {
 
 
     }
+    public Agenda obtenerAgendaSegunSuNumero(int quinaAgendaVolVore) {
+
+        return agendas.get(quinaAgendaVolVore) ;
+
+
+
+    }
+    public List<Contacto> buscarContactos (String busqueda) {
+        List<Contacto> contactosEncontrados = new ArrayList<>();
+        for (Agenda agenda : agendas) {
+            for (Contacto contacto : agenda.contactos)
+            if (contacto.nombre.contains(busqueda) || contacto.telefono.contains(busqueda)) {
+                contactosEncontrados.add(contacto);
+            }
+        }
+        return contactosEncontrados;
+    }
+
+
+    public void pideLosDatosDeMoficacion(eliminar, nuevoNombre, nuevonumtlf){
+        if (!nombres.equal(eliminar)) {
+           System.out.println("No hay contactos");
+       }else {
+            for () {
+
+                if (eliminar.equals(contacto.nombre)) {
+                    System.out.println(+1 + ". " + contacto.nombre + "-" + "Tf:" + contacto.telefono);
+                    encontrado = true;
+                }if (encontrado==true) {
+
+                    //modificarContacto
+
+                }
+            }
+        }
+    }
 }
+
+
