@@ -1,6 +1,7 @@
 package org.benigaslo.model;
 
 import org.benigaslo.controller.AgendaDTO;
+import org.benigaslo.controller.ModificacionDTO;
 import org.benigaslo.controller.NuevoContactoDTO;
 
 import java.util.ArrayList;
@@ -8,11 +9,11 @@ import java.util.List;
 
 public class Modelo {
 
-    List<Agenda> agendas = new ArrayList<>();
+    public List<Agenda> agendas = new ArrayList<>();
 
 
-    public void guardarAgenda(AgendaDTO datos){
-        agendas.add(new Agenda(datos.nombre, datos.ciudad));
+    public void guardarAgenda(AgendaDTO datos) {
+        agendas.add(new Agenda(datos.nombre, datos.descrpcion));
     }
 
 
@@ -20,8 +21,15 @@ public class Modelo {
         return agendas;
     }
 
-    public void eliminarContacto(String nom){
+    public void eliminarContacto(int numeroAgenda, String nomContactoAEliminar) {
 
+
+        agendas.get(numeroAgenda).contactos.removeIf(contacto -> contacto.nombre.equals(nomContactoAEliminar));
+
+
+    }
+
+    public void eliminarAgenda(String nom) {
         agendas.removeIf(agenda -> agenda.nombre.equals(nom));
 
     }
@@ -44,6 +52,53 @@ public class Modelo {
         }
 
 
+    }
+
+    public Agenda obtenerAgendaSegunSuNumero(int quinaAgendaVolVore) {
+
+        return agendas.get(quinaAgendaVolVore);
+
+
+    }
+
+    public List<Contacto> buscarContactos(String busqueda) {
+        List<Contacto> contactosEncontrados = new ArrayList<>();
+        for (Agenda agenda : agendas) {
+            for (Contacto contacto : agenda.contactos)
+                if (contacto.nombre.contains(busqueda) || contacto.telefono.contains(busqueda)) {
+                    contactosEncontrados.add(contacto);
+                }
+        }
+        return contactosEncontrados;
+    }
+
+    public boolean comprobarsiNomesta(ModificacionDTO datos){
+        for (Agenda agenda : agendas) {
+            for (Contacto contacto : agenda.contactos) {
+                if (datos.nombreOriginal.equals(contacto.nombre)) {
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
+    public void modificaContacto(ModificacionDTO datos) {
+
+        estedaci:
+        for (Agenda agenda : agendas) {
+            for (Contacto contacto : agenda.contactos) {
+                if (datos.nombreOriginal.equals(contacto.nombre)) {
+                    contacto.nombre = datos.nuevoNombre;
+                    contacto.telefono = datos.nuevonumTlf;
+                }
+            }
+
+        }
+
 
     }
 }
+
+

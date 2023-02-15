@@ -1,8 +1,10 @@
 package org.benigaslo.view;
 
 import org.benigaslo.controller.AgendaDTO;
+import org.benigaslo.controller.ModificacionDTO;
 import org.benigaslo.controller.NuevoContactoDTO;
 import org.benigaslo.model.Agenda;
+import org.benigaslo.model.Contacto;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,14 +13,20 @@ public class Vista {
     Scanner scanner = new Scanner(System.in);
 
     public void mostrarMenu() {
-        System.out.println("MENU");
-        System.out.println("1. Añadir contacto\n" +
-                "2. Ver contactos\n" +
-                "3. Crear nueva agenda\n" +
-                "4. Ver agendas");
+        System.out.println("++++++++++++++++++++++++++++++++++++");
+        System.out.println("*****MENU*****");
+        System.out.println("Cercar: \n"+"0. Cerrar programa \n" + "1. Añadir contacto\n" +
+                "2. Eliminar contacto\n" +
+                "3. Ver contactos\n" +
+                "4. Crear nueva agenda\n" +
+                "5. Ver agendas\n" +
+                "6. Eliminar agendas\n" +
+                "7. Modificar contacto\n" +
+                "8. Buscar contacto");
     }
 
     public int pedirOpcion() {
+        System.out.println("++++++++++++++++++++++++++++++++++++");
         System.out.println("Opcion: ");
         int opcion = scanner.nextInt();
         scanner.nextLine();
@@ -27,7 +35,7 @@ public class Vista {
     }
 
     public void mostrarAgendas(List<Agenda> agendas) {
-        System.out.println("LISTA DE Bibliotecas");
+        System.out.println("LISTA DE AGENDAS");
 
         agendas.forEach(agenda -> System.out.println(agenda.nombre + " : " + agenda.descripcion));
     }
@@ -35,7 +43,7 @@ public class Vista {
     public AgendaDTO pedirDatosAgendaNueva() {
         System.out.println("Nombre: ");
         String nombre = scanner.nextLine();
-        System.out.println("Ciudad: ");
+        System.out.println("Info: ");
         String ciudad = scanner.nextLine();
 
         return new AgendaDTO(nombre, ciudad);
@@ -43,10 +51,10 @@ public class Vista {
     }
 
     public NuevoContactoDTO muestraPantallaAnyadirContacto(List<Agenda> joseps) {
-        System.out.println("*** Añadir contacto");
+        System.out.println("*** Añadir contacto***");
         System.out.println("Selecione agenda:");
 
-        for(Agenda agenda : joseps){
+        for (Agenda agenda : joseps) {
             System.out.println(agenda.nombre);
         }
 
@@ -56,11 +64,138 @@ public class Vista {
 
         System.out.println("Nombre: ");
         String nombreContacto = scanner.nextLine();
-        System.out.println("Tlefono: ");
+        System.out.println("**************************************");
+        System.out.println("Telefono: ");
         String nombreTelefono = scanner.nextLine();
 
 
-        return new NuevoContactoDTO(nombreContacto, nombreContacto, nombreTelefono);
+        return new NuevoContactoDTO(numerosDeAgenada, nombreContacto, nombreTelefono);
 
     }
+
+    public void mostrarAgenda(Agenda agenda) {
+        System.out.println("VIENDO LA AGENDA " + agenda.nombre);
+
+        System.out.println("CONTACTOS: ");
+
+        for (Contacto contacto : agenda.contactos) {
+
+            System.out.println("Nombre: " + contacto.nombre);
+            System.out.println("Telefono: " + contacto.telefono);
+            System.out.println("--------------------------------------------------------");
+
+        }
+
+
+    }
+
+    public int pedirQueAgendaQuiereVer(List<Agenda> agendas) {
+        System.out.println("Que agenda quieres ver?");
+        int contador = 0;
+
+        for (Agenda agenda : agendas) {
+            System.out.println((contador++) + "." + agenda.nombre);
+        }
+
+
+        int numeroAgenda = scanner.nextInt();
+        scanner.nextLine();
+
+        return numeroAgenda;
+    }
+
+    public void voreLlistaAgendes(List<Agenda> agendas) {
+
+
+        agendas.forEach(agenda -> System.out.println(agenda.nombre + "--------------" + agenda.descripcion));
+
+    }
+
+    public String pedirContactoeliminar() {
+
+        System.out.println("Que contacto quiere eliminar?");
+
+        String nomEliminar = scanner.nextLine();
+
+        return nomEliminar;
+    }
+
+    public String pedirAgendaAEliminar() {
+
+        System.out.println("Que agenda quieres eliminar?");
+
+        String nomEliminaragenda = scanner.nextLine();
+
+        return nomEliminaragenda;
+
+    }
+
+    public void cercarMenu() {
+    }
+
+    public void imprimirNoExiste(){
+
+        System.out.println("Este contacto no existe");
+
+    }
+
+    public ModificacionDTO pedirDatosModificacion() {
+
+        System.out.println("Nombre de contacto a modificar:");
+        String eliminar = scanner.nextLine();
+
+        return new ModificacionDTO(eliminar);
+    }
+
+    public ModificacionDTO pedirDatosqueQuedan(){
+        System.out.println("Nuevo nombre del contacto:");
+        String nuevoNombre = scanner.nextLine();
+        System.out.println("Nuevo telefono del contacto:");
+        String nuevonumtlf = scanner.nextLine();
+        return new ModificacionDTO(nuevoNombre);
+
+    }
+
+    public String buscarContacto() {
+        System.out.println("Para buscar un contacto ponga su nombre o telefono: ");
+        return scanner.next();
+    }
+
+    public void imprimirContactosEncontrados(List<Contacto> contactosEncontrados) {
+        System.out.println("Se han encontrado estos contactos: ");
+        contactosEncontrados.forEach(contacto -> System.out.println(contacto.nombre + " ----- " + contacto.telefono));
+
+    }
+
+    public void nextLine() {
+        scanner.nextLine();
+    }
 }
+
+
+
+/*
+
+Cercar:
+1. Añadir contacto
+2. Eliminar contacto
+3. Ver contactos
+4. Crear nueva agenda
+5. Ver agendas
+6. Eliminar agendas
+7. Modificar
+
+
+Nombre del contacto a modicar:
+Juan
+
+Nuevo nombre (deja en blanco para no modificar):
+Pepe
+Nuevo telefono (deja en blanco para no modificar):
+345345
+
+
+
+
+
+ */
