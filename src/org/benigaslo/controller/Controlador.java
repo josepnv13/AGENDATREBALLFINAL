@@ -79,29 +79,32 @@ public class Controlador {
                     int quinaAgendaVolVore = vista.pedirQueAgendaQuiereVer(agendas);
 
                     Agenda agenda = modelo.obtenerAgendaSegunSuNumero(quinaAgendaVolVore);
+
                     vista.mostrarAgenda(agenda);
 
-
                     ModificacionDTO datos = vista.pedirDatosModificacion();
+
                     boolean error = modelo.comprobarsiNomesta(datos);
+
                     if (!error) {
                         vista.imprimirNoExiste();
                     } else {
-                        ModificacionDTO datos1 = vista.pedirDatosqueQuedan();
-                        modelo.modificaContacto(datos1);
+                        ModificacionDTO nuevosDatos = vista.pedirDatosqueQuedan();
+                        nuevosDatos.nombreOriginal = datos.nombreOriginal;
+                        modelo.modificaContacto(nuevosDatos);
                     }
 
                 }
                 else if (o == 8) {
                     String busqueda = vista.buscarContacto();
-                    if(busqueda.equals(contacto.nombre)){
-                        List<Contacto> contactosEncontrados = modelo.buscarContactos(busqueda);
-                        vista.imprimirContactosEncontrados(contactosEncontrados);
+                    List<Contacto> contactosEncontrados = modelo.buscarContactos(busqueda);
 
-                    }else {
+
+                    if (contactosEncontrados.isEmpty()) {
                         vista.imprimirNoExiste();
+                    } else {
+                        vista.imprimirContactosEncontrados(contactosEncontrados);
                     }
-
 
 
                 }
