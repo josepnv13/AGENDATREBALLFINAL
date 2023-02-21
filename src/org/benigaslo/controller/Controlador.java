@@ -94,8 +94,14 @@ public class Controlador {
                 }
                 else if (o == 8) {
                     String busqueda = vista.buscarContacto();
-                    List<Contacto> contactosEncontrados = modelo.buscarContactos(busqueda);
-                    vista.imprimirContactosEncontrados(contactosEncontrados);
+                    if(busqueda.equals(contacto.nombre)){
+                        List<Contacto> contactosEncontrados = modelo.buscarContactos(busqueda);
+                        vista.imprimirContactosEncontrados(contactosEncontrados);
+
+                    }else {
+                        vista.imprimirNoExiste();
+                    }
+
 
 
                 }

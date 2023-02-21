@@ -46,7 +46,7 @@ public class Vista {
                 "5. Ver agendas\n" +
                 "6. Eliminar agendas\n" +
                 "7. Modificar contacto\n" +
-                "8. Buscar contacto");
+                "8."+"\uD83D\uDD0D"+"Buscar contacto");
     }
 
     public int pedirOpcion() {
@@ -162,7 +162,7 @@ public class Vista {
 
     public void imprimirNoExiste(){
 
-        System.out.println("Este contacto no existe");
+        error("Este contacto no existe");
 
     }
 
