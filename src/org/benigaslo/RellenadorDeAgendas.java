@@ -5,9 +5,12 @@ import org.benigaslo.model.Contacto;
 
 import java.util.List;
 
-public class RellenadorDeAgendas {
+public class  RellenadorDeAgendas {
 
-    void rellenar(List<Agenda> agendas) {
+
+
+    public void rellenar(List<Agenda> agendas) {
+
         Agenda agenda1 = new Agenda("Personal", "Mis amigos personales");
         Agenda agenda2 = new Agenda("Work", "Mis compañeros de trabajo");
 

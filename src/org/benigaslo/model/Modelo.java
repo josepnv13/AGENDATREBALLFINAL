@@ -48,12 +48,16 @@ public class Modelo {
         return agendas.get(quinaAgendaVolVore);
     }
 
-    public List<Contacto> buscarContactos(String busqueda) {
+    public List<Contacto> buscarContactos(String busqueda ) {
+
+
         List<Contacto> contactosEncontrados = new ArrayList<>();
         for (Agenda agenda : agendas) {
             for (Contacto contacto : agenda.contactos)
                 if (contacto.nombre.contains(busqueda) || contacto.telefono.contains(busqueda)) {
                     contactosEncontrados.add(contacto);
+
+
                 }
         }
         return contactosEncontrados;
@@ -80,6 +84,7 @@ public class Modelo {
                     contacto.nombre = datos.nuevoNombre;
                     contacto.telefono = datos.nuevonumTlf;
                 }
+
             }
 
         }

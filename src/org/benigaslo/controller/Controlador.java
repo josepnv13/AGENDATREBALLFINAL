@@ -80,8 +80,6 @@ public class Controlador {
 
                     Agenda agenda = modelo.obtenerAgendaSegunSuNumero(quinaAgendaVolVore);
                     vista.mostrarAgenda(agenda);
-
-
                     ModificacionDTO datos = vista.pedirDatosModificacion();
                     boolean error = modelo.comprobarsiNomesta(datos);
                     if (!error) {
@@ -94,14 +92,13 @@ public class Controlador {
                 }
                 else if (o == 8) {
                     String busqueda = vista.buscarContacto();
-                    if(busqueda.equals(contacto.nombre)){
-                        List<Contacto> contactosEncontrados = modelo.buscarContactos(busqueda);
-                        vista.imprimirContactosEncontrados(contactosEncontrados);
+                    List<Contacto> contactosEncontrados = modelo.buscarContactos(busqueda);
 
-                    }else {
+                    if (contactosEncontrados.isEmpty()) {
                         vista.imprimirNoExiste();
+                    } else {
+                        vista.imprimirContactosEncontrados(contactosEncontrados);
                     }
-
 
 
                 }

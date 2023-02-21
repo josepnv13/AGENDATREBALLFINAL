@@ -39,13 +39,13 @@ public class Vista {
     public void mostrarMenu() {
         System.out.println("\u001B[33m"+"++++++++++++++++++++++++++++++++++++");
         System.out.println("[31m"+"*****MENU*****"+"\u001B[0m");
-        System.out.println("\u001B[35m"+"Cercar:\n"+"\u001B[0m"+"0. Cerrar programa \n" + "1. Añadir contacto\n" +
-                "2. Eliminar contacto\n" +
-                "3. Ver contactos\n" +
-                "4. Crear nueva agenda\n" +
-                "5. Ver agendas\n" +
-                "6. Eliminar agendas\n" +
-                "7. Modificar contacto\n" +
+        System.out.println("\u001B[35m"+"Cercar:\n"+"\u001B[0m"+"0."+"❌" +"Cerrar programa \n" + "1."+"➕"+" Añadir contacto\n" +
+                "2."+"\uD83D\uDDD1"+" Eliminar contacto\n" +
+                "3."+"\uD83D\uDC40"+ "Ver contactos\n" +
+                "4."+"➕"+"Crear nueva agenda\n" +
+                "5."+"\uD83D\uDC40"+" Ver agendas\n" +
+                "6."+"\uD83D\uDDD1" +"Eliminar agendas\n" +
+                "7."+"\uD83D\uDD04"+"Modificar contacto\n" +
                 "8."+"\uD83D\uDD0D"+"Buscar contacto");
     }
 
@@ -59,7 +59,7 @@ public class Vista {
     }
 
     public void mostrarAgendas(List<Agenda> agendas) {
-        System.out.println("LISTA DE AGENDAS");
+        System.out.println("LISTA DE AGENDAS\uD83D\uDCD2");
 
         agendas.forEach(agenda -> System.out.println(agenda.nombre + " : " + agenda.descripcion));
     }
@@ -76,7 +76,7 @@ public class Vista {
 
     public NuevoContactoDTO muestraPantallaAnyadirContacto(List<Agenda> joseps) {
         System.out.println("\u001B[36m"+"*** Añadir contacto***");
-        System.out.println("Selecione agenda:");
+        System.out.println("Selecione agenda\uD83D\uDCD2:");
         int contador=0;
 
         for (Agenda agenda : joseps) {
@@ -90,7 +90,7 @@ public class Vista {
         System.out.println("Nombre: ");
         String nombreContacto = scanner.nextLine();
         System.out.println("**************************************");
-        System.out.println("Telefono: "+"\u001B[0m");
+        System.out.println("\uD83D\uDCDETelefono: "+"\u001B[0m");
         String nombreTelefono = scanner.nextLine();
 
 
@@ -99,14 +99,14 @@ public class Vista {
     }
 
     public void mostrarAgenda(Agenda agenda) {
-        System.out.println("VIENDO LA AGENDA " + agenda.nombre);
+        System.out.println("VIENDO LA AGENDA\uD83D\uDCD2 " + agenda.nombre);
 
         System.out.println("CONTACTOS: ");
 
         for (Contacto contacto : agenda.contactos) {
 
             System.out.println("Nombre: " + contacto.nombre);
-            System.out.println("Telefono: " + contacto.telefono);
+            System.out.println("\uD83D\uDCDETelefono: " + contacto.telefono);
             System.out.println("--------------------------------------------------------");
 
         }
@@ -115,7 +115,7 @@ public class Vista {
     }
 
     public int pedirQueAgendaQuiereVer(List<Agenda> agendas) {
-        System.out.println("\033[1;34m"+"Que agenda quieres ver?");
+        System.out.println("\033[1;34m"+"Que agenda quieres ver?\uD83D\uDCD2");
         int contador = 0;
 
         for (Agenda agenda : agendas) {
