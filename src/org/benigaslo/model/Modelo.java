@@ -7,12 +7,14 @@ import org.benigaslo.controller.NuevoContactoDTO;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Modelo {
 
     public List<Agenda> agendas = new ArrayList<>();
 
 
     public void guardarAgenda(AgendaDTO datos) {
+
         agendas.add(new Agenda(datos.nombre, datos.descrpcion));
     }
 
@@ -30,35 +32,20 @@ public class Modelo {
     }
 
     public void eliminarAgenda(String nom) {
-        agendas.removeIf(agenda -> agenda.nombre.equals(nom));
 
+           agendas.removeIf(agenda -> agenda.nombre.equals(nom));
     }
 
     public void guardaEsteContacto(NuevoContactoDTO datos) {
-
         Contacto contacto = new Contacto(datos.nombre, datos.telefono);
-
-        // String numerosAgenda = "1 7 13 23 34";
-        //                              |
-        //                              |
-        //                           split(" ")
-        //                              |
-        //                              |
-        //                              v
-        //                  ["1", "7", "13", "23", "34"]
 
         for (String numero : datos.numerosAgenda.split(" ")) {
             agendas.get(Integer.parseInt(numero)).contactos.add(contacto);
         }
-
-
     }
 
     public Agenda obtenerAgendaSegunSuNumero(int quinaAgendaVolVore) {
-
         return agendas.get(quinaAgendaVolVore);
-
-
     }
 
     public List<Contacto> buscarContactos(String busqueda) {

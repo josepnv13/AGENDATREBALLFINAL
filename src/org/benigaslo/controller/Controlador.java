@@ -26,10 +26,12 @@ public class Controlador {
                 if (o == 1) {
                     List<Agenda> lalistaquemeretorna = modelo.obtenerListaAgendas();
 
-                    NuevoContactoDTO datosNuevoContacto = vista.muestraPantallaAnyadirContacto(lalistaquemeretorna);
-
-
-                    modelo.guardaEsteContacto(datosNuevoContacto);
+                    if (lalistaquemeretorna.size() == 0){
+                        vista.muestraErrorNoAgendas();
+                    } else {
+                        NuevoContactoDTO datosNuevoContacto = vista.muestraPantallaAnyadirContacto(lalistaquemeretorna);
+                        modelo.guardaEsteContacto(datosNuevoContacto);
+                    }
                 }
                 else if (o == 3) {
                     List<Agenda> agendas = modelo.obtenerListaAgendas();
@@ -46,7 +48,6 @@ public class Controlador {
 
                 }
                 else if (o == 5) {
-                    System.out.println("Ustd tiene estas agendas: ");
                     List<Agenda> agendas = modelo.obtenerListaAgendas();
                     vista.voreLlistaAgendes(agendas);
 
@@ -74,10 +75,16 @@ public class Controlador {
 
                 }
                 else if (o == 7) {
+                    List<Agenda> agendas = modelo.obtenerListaAgendas();
+                    int quinaAgendaVolVore = vista.pedirQueAgendaQuiereVer(agendas);
+
+                    Agenda agenda = modelo.obtenerAgendaSegunSuNumero(quinaAgendaVolVore);
+                    vista.mostrarAgenda(agenda);
+
 
                     ModificacionDTO datos = vista.pedirDatosModificacion();
                     boolean error = modelo.comprobarsiNomesta(datos);
-                    if (error==false) {
+                    if (!error) {
                         vista.imprimirNoExiste();
                     } else {
                         ModificacionDTO datos1 = vista.pedirDatosqueQuedan();
@@ -89,14 +96,27 @@ public class Controlador {
                     String busqueda = vista.buscarContacto();
                     List<Contacto> contactosEncontrados = modelo.buscarContactos(busqueda);
                     vista.imprimirContactosEncontrados(contactosEncontrados);
+
+
                 }
                 else if (o == 0) {
                     break;
                 }
             } catch (InputMismatchException e) {
                 vista.nextLine();
-                System.out.println("?????????¿¿¿¿¿¿¿");
-                System.out.println("Not a correct option! Try again");
+                vista.muestraErrorInput();
+            }catch (IndexOutOfBoundsException e ){
+
+                vista.muestraErrorInput();
+
+            }catch(NumberFormatException e){
+
+                vista.muestraErrorInput();
+
+            }catch (NullPointerException e ){
+
+                vista.muestraErrorInput();
+
             }
         }
 

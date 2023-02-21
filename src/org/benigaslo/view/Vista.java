@@ -12,10 +12,34 @@ import java.util.Scanner;
 public class Vista {
     Scanner scanner = new Scanner(System.in);
 
+    public void muestraErrorInput() {
+        error("Not a correct option! Try again");
+    }
+
+    public void muestraErrorNoAgendas() {
+        error("no tienes ninguna agenda creada");
+    }
+
+    void error(String texto) {
+        System.out.println(RED + "\uD83D\uDEA8 ERROR: " + texto);
+    }
+
+    public static final String RESET = "\u001B[0m";
+    public static final String BLACK = "\u001B[30m";
+    public static final String RED = "\033[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String YELLOW = "\u001B[33m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String PURPLE = "\u001B[35m";
+    public static final String CYAN = "\u001B[36m";
+    public static final String WHITE = "\u001B[37m";
+
+
+
     public void mostrarMenu() {
-        System.out.println("++++++++++++++++++++++++++++++++++++");
-        System.out.println("*****MENU*****");
-        System.out.println("Cercar: \n"+"0. Cerrar programa \n" + "1. Añadir contacto\n" +
+        System.out.println("\u001B[33m"+"++++++++++++++++++++++++++++++++++++");
+        System.out.println("[31m"+"*****MENU*****"+"\u001B[0m");
+        System.out.println("\u001B[35m"+"Cercar:\n"+"\u001B[0m"+"0. Cerrar programa \n" + "1. Añadir contacto\n" +
                 "2. Eliminar contacto\n" +
                 "3. Ver contactos\n" +
                 "4. Crear nueva agenda\n" +
@@ -26,8 +50,8 @@ public class Vista {
     }
 
     public int pedirOpcion() {
-        System.out.println("++++++++++++++++++++++++++++++++++++");
-        System.out.println("Opcion: ");
+        System.out.println("\u001B[33m"+"++++++++++++++++++++++++++++++++++++"+"\u001B[0m");
+        System.out.println("\u001B[34m"+"Opcion: "+ "\u001B[0m");
         int opcion = scanner.nextInt();
         scanner.nextLine();
 
@@ -51,11 +75,12 @@ public class Vista {
     }
 
     public NuevoContactoDTO muestraPantallaAnyadirContacto(List<Agenda> joseps) {
-        System.out.println("*** Añadir contacto***");
+        System.out.println("\u001B[36m"+"*** Añadir contacto***");
         System.out.println("Selecione agenda:");
+        int contador=0;
 
         for (Agenda agenda : joseps) {
-            System.out.println(agenda.nombre);
+            System.out.println(contador++ +"." +" "+agenda.nombre);
         }
 
         System.out.println("Opcion: ");
@@ -65,7 +90,7 @@ public class Vista {
         System.out.println("Nombre: ");
         String nombreContacto = scanner.nextLine();
         System.out.println("**************************************");
-        System.out.println("Telefono: ");
+        System.out.println("Telefono: "+"\u001B[0m");
         String nombreTelefono = scanner.nextLine();
 
 
@@ -90,7 +115,7 @@ public class Vista {
     }
 
     public int pedirQueAgendaQuiereVer(List<Agenda> agendas) {
-        System.out.println("Que agenda quieres ver?");
+        System.out.println("\033[1;34m"+"Que agenda quieres ver?");
         int contador = 0;
 
         for (Agenda agenda : agendas) {
@@ -105,10 +130,12 @@ public class Vista {
     }
 
     public void voreLlistaAgendes(List<Agenda> agendas) {
-
-
-        agendas.forEach(agenda -> System.out.println(agenda.nombre + "--------------" + agenda.descripcion));
-
+        if (agendas.size() == 0) {
+           error("No tiene ninguna agenda");
+        } else {
+            System.out.println("Ustd tiene estas agendas: ");
+            agendas.forEach(agenda -> System.out.println("\033[0;37m"+agenda.nombre + "--------------" + agenda.descripcion+"\u001B[0m"));
+        }
     }
 
     public String pedirContactoeliminar() {
