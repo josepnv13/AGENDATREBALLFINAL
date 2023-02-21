@@ -17,7 +17,7 @@ public class Vista {
     }
 
     public void muestraErrorNoAgendas() {
-        error("no tienes ninguna agenda creada");
+        error("No tienes ninguna agenda creada");
     }
 
     void error(String texto) {
