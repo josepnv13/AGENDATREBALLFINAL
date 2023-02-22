@@ -84,6 +84,7 @@ public class Modelo {
                     contacto.nombre = datos.nuevoNombre;
                     contacto.telefono = datos.nuevonumTlf;
                 }
+
             }
         }
     }
