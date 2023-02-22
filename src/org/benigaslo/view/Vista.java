@@ -6,6 +6,8 @@ import org.benigaslo.controller.NuevoContactoDTO;
 import org.benigaslo.model.Agenda;
 import org.benigaslo.model.Contacto;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,8 +36,6 @@ public class Vista {
     public static final String CYAN = "\u001B[36m";
     public static final String WHITE = "\u001B[37m";
 
-
-
     public void mostrarMenu() {
         System.out.println("\u001B[33m"+"++++++++++++++++++++++++++++++++++++");
         System.out.println("[31m"+"*****MENU*****"+"\u001B[0m");
@@ -49,11 +49,15 @@ public class Vista {
                 "8."+"\uD83D\uDD0D"+"Buscar contacto");
     }
 
+
+
+
     public int pedirOpcion() {
         System.out.println("\u001B[33m"+"++++++++++++++++++++++++++++++++++++"+"\u001B[0m");
         System.out.println("\u001B[34m"+"Opcion: "+ "\u001B[0m");
         int opcion = scanner.nextInt();
         scanner.nextLine();
+
 
         return opcion;
     }
@@ -175,9 +179,9 @@ public class Vista {
     }
 
     public ModificacionDTO pedirDatosqueQuedan(){
-        System.out.println("Nuevo nombre del contacto:");
+        System.out.println("Nuevo nombre del contacto(puede estar vacio):");
         String nuevoNombre = scanner.nextLine();
-        System.out.println("Nuevo telefono del contacto:");
+        System.out.println("Nuevo telefono del contacto(puede estar vacio):");
         String nuevonumtlf = scanner.nextLine();
         return new ModificacionDTO(nuevoNombre, nuevonumtlf);
 
@@ -202,6 +206,7 @@ public class Vista {
 
 
 /*
+dddd
 
 Cercar:
 1. Añadir contacto

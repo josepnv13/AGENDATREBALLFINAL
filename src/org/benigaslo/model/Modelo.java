@@ -4,6 +4,8 @@ import org.benigaslo.controller.AgendaDTO;
 import org.benigaslo.controller.ModificacionDTO;
 import org.benigaslo.controller.NuevoContactoDTO;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,9 @@ public class Modelo {
 
         agendas.add(new Agenda(datos.nombre, datos.descrpcion));
     }
+
+
+
 
 
     public List<Agenda> obtenerListaAgendas() {
@@ -81,8 +86,16 @@ public class Modelo {
         for (Agenda agenda : agendas) {
             for (Contacto contacto : agenda.contactos) {
                 if (datos.nombreOriginal.equals(contacto.nombre)) {
+                    if (datos.nuevonumTlf.isEmpty()){
+                        datos.nuevonumTlf= contacto.telefono;
+                    } else if (datos.nuevoNombre.isEmpty()) {
+                        datos.nuevoNombre= contacto.nombre;
+
+                    }
                     contacto.nombre = datos.nuevoNombre;
                     contacto.telefono = datos.nuevonumTlf;
+
+
                 }
 
             }
