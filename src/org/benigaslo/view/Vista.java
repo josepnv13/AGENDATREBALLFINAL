@@ -179,9 +179,9 @@ public class Vista {
     }
 
     public ModificacionDTO pedirDatosqueQuedan(){
-        System.out.println("Nuevo nombre del contacto(puede estar vacio):");
+        System.out.println("Nuevo nombre del contacto(deja en blanco para no modificar):");
         String nuevoNombre = scanner.nextLine();
-        System.out.println("Nuevo telefono del contacto(puede estar vacio):");
+        System.out.println("Nuevo telefono del contacto(deja en blanco para no modificar):");
         String nuevonumtlf = scanner.nextLine();
         return new ModificacionDTO(nuevoNombre, nuevonumtlf);
 
