@@ -86,11 +86,14 @@ public class Modelo {
         for (Agenda agenda : agendas) {
             for (Contacto contacto : agenda.contactos) {
                 if (datos.nombreOriginal.equals(contacto.nombre)) {
-                    if (datos.nuevonumTlf.isEmpty()){
+                    if (datos.nuevonumTlf.isEmpty()||datos.nuevoNombre.isEmpty()){
                         datos.nuevonumTlf= contacto.telefono;
+                        datos.nuevoNombre= contacto.nombre;
                     } else if (datos.nuevoNombre.isEmpty()) {
                         datos.nuevoNombre= contacto.nombre;
 
+                    }else if (datos.nuevonumTlf.isEmpty()){
+                        datos.nuevonumTlf= contacto.telefono;
                     }
                     contacto.nombre = datos.nuevoNombre;
                     contacto.telefono = datos.nuevonumTlf;
